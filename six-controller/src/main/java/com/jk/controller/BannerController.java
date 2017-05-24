@@ -5,6 +5,7 @@ import com.jk.service.BannerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,9 +26,11 @@ public class BannerController {
     }
 
     @RequestMapping("selectBannerMessageList")
-    @ResponseBody
-    public List<Banner> selectBannerMessageList(){
+    public ModelAndView selectBannerMessageList(){
         List<Banner> bannerList = bannerService.selectBannerMessageList();
-        return bannerList;
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("bannerList",bannerList);
+        mv.setViewName("../../index");
+        return mv;
     }
 }
