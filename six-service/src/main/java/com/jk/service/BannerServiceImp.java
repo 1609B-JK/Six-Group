@@ -23,4 +23,9 @@ public class BannerServiceImp implements BannerService {
         for (Banner b: list)
             System.out.println(b.getT_imgpath());
     }
+
+    @Override
+    public List<Banner> selectBannerMessageList() {
+        return bannerMapper.selectBannerList();
+    }
 }
