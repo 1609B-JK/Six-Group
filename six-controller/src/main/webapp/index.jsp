@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
@@ -53,16 +54,9 @@
 <div class="box2">
   <img id="imgs" src="../img/e5dbc68268b449fcaf36c086bdd451b1.jpg"/>
   <ul>
-    <li id="l1"><a href="javascript:void(0)"> &nbsp;欢乐颂2:五美续写欢乐篇章</a></li>
-    <li id="l2"><a href="javascript:void(0)"> &nbsp;奇葩说:雷军魔性鬼畜掀高潮</a></li>
-    <li id="l3"><a href="javascript:void(0)"> &nbsp;思美人:马可张馨予战国风云</a></li>
-    <li id="l4"><a href="javascript:void(0)"> &nbsp;来吧冠军:张国伟尴舞贾乃亮</a></li>
-    <li id="l5"><a href="javascript:void(0)"> &nbsp;废柴兄弟5:解压神剧专制不爽</a></li>
-    <li id="l6"><a href="javascript:void(0)"> &nbsp;吃光预告:吴宗宪践踏曾志伟</a></li>
-    <li id="l7"><a href="javascript:void(0)"> &nbsp;疯狂的豆子:城市版乡村爱情</a></li>
-    <li id="l8"><a href="javascript:void(0)"> &nbsp;卧底归来:张嘉译带队智斗毒枭</a></li>
-    <li id="l9"><a href="javascript:void(0)">&nbsp;探寻AI:AIphaGo再战人类</a></li>
-    <li id="l10"><a href="javascript:void(0)">&nbsp;奔跑吧:鹿晗辣手摧花撕热巴</a></li>
+    <c:forEach items="${bannerList}" var="l">
+       <li id="${t_id}"><a href="javascript:${t_linkurl}"> &nbsp;${l.t_title}</a></li>
+    </c:forEach>
   </ul>
 </div>
 <div class="box5">
@@ -175,37 +169,13 @@
       $("#box6").css("display", "none")
     })
   })
-  $(function(){
-    $("#l1").mouseenter(function(){
-      $("#imgs").attr("src","../img/e5dbc68268b449fcaf36c086bdd451b1.jpg")
+$(function(){
+  <c:forEach items="${bannerList}" var="l">
+     var id=${l.t_id};
+    $("#"+id).mouseenter(function(){
+      $("#imgs").attr("src",${l.t_imgpath})
     })
-    $("#l2").mouseenter(function(){
-      $("#imgs").attr("src","../img/511072517c26452da069ae5946c55578.jpg")
-    })
-    $("#l3").mouseenter(function(){
-      $("#imgs").attr("src","../img/d95e0d6af17943caac8eef4d299eea29.jpg")
-    })
-    $("#l4").mouseenter(function(){
-      $("#imgs").attr("src","../img/f421c3b35f824c05b6946b3edaba3497.jpg")
-    })
-    $("#l5").mouseenter(function(){
-      $("#imgs").attr("src","../img/17707927b7204d47a29ff363ce6d3461.jpg")
-    })
-    $("#l6").mouseenter(function(){
-      $("#imgs").attr("src","../img/9946372ea5504631a9179f4141ec9afb.jpg")
-    })
-    $("#l7").mouseenter(function(){
-      $("#imgs").attr("src","../img/6e736d57f6fa4aa890731dc4ef3a7cfd.jpg")
-    })
-    $("#l8").mouseenter(function(){
-      $("#imgs").attr("src","../img/5c50ecbf5d9641c4825aba9a3cd45c83.jpg")
-    })
-    $("#l9").mouseenter(function(){
-      $("#imgs").attr("src","../img/a66b1457a98c4f3aba0f8d032b9c8b2f.jpg")
-    })
-    $("#l10").mouseenter(function(){
-      $("#imgs").attr("src","../img/c893336311a84fa18762e751a1338887.jpeg")
-    })
+ </c:forEach>
   })
 </script>
 </html>
