@@ -19,16 +19,18 @@ public class _index__jsp extends com.caucho.jsp.JavaPage
               javax.servlet.http.HttpServletResponse response)
     throws java.io.IOException, javax.servlet.ServletException
   {
+    javax.servlet.http.HttpSession session = request.getSession(true);
     com.caucho.server.webapp.WebApp _jsp_application = _caucho_getApplication();
-    com.caucho.jsp.PageContextImpl pageContext = _jsp_pageManager.allocatePageContext(this, _jsp_application, request, response, null, null, 8192, true, false);
+    com.caucho.jsp.PageContextImpl pageContext = _jsp_pageManager.allocatePageContext(this, _jsp_application, request, response, null, session, 8192, true, false);
 
-    TagState _jsp_state = null;
+    TagState _jsp_state = new TagState();
 
     try {
-      _jspService(request, response, pageContext, _jsp_application, _jsp_state);
+      _jspService(request, response, pageContext, _jsp_application, session, _jsp_state);
     } catch (java.lang.Throwable _jsp_e) {
       pageContext.handlePageException(_jsp_e);
     } finally {
+      _jsp_state.release();
       _jsp_pageManager.freePageContext(pageContext);
     }
   }
@@ -38,6 +40,7 @@ public class _index__jsp extends com.caucho.jsp.JavaPage
               javax.servlet.http.HttpServletResponse response,
               com.caucho.jsp.PageContextImpl pageContext,
               javax.servlet.ServletContext application,
+              javax.servlet.http.HttpSession session,
               TagState _jsp_state)
     throws Throwable
   {
@@ -48,8 +51,47 @@ public class _index__jsp extends com.caucho.jsp.JavaPage
     javax.servlet.jsp.tagext.JspTag _jsp_parent_tag = null;
     com.caucho.jsp.PageContextImpl _jsp_parentContext = pageContext;
     response.setContentType("text/html;charset=UTF-8");
+    com.caucho.jsp.IteratorLoopSupportTag _jsp_loop_1 = null;
 
     out.write(_jsp_string0, 0, _jsp_string0.length);
+    out.print((request.getContextPath()));
+    out.write(_jsp_string1, 0, _jsp_string1.length);
+    out.print((request.getContextPath()));
+    out.write(_jsp_string2, 0, _jsp_string2.length);
+    _jsp_loop_1 = _jsp_state.get_jsp_loop_1(pageContext, _jsp_parent_tag);
+    java.lang.Object _jsp_items_2 = _caucho_expr_0.evalObject(_jsp_env);
+    java.util.Iterator _jsp_iter_2 = com.caucho.jstl.rt.CoreForEachTag.getIterator(_jsp_items_2);
+    _jsp_loop_1.init(0, Integer.MAX_VALUE, 1, false, false, false);
+    while (_jsp_iter_2.hasNext()) {
+      Object _jsp_i_2 = _jsp_iter_2.next();
+      _jsp_loop_1.setCurrent(_jsp_i_2, _jsp_iter_2.hasNext());
+      pageContext.setAttribute("l", _jsp_i_2);
+      out.write(_jsp_string3, 0, _jsp_string3.length);
+      _caucho_expr_1.print(out, _jsp_env, false);
+      out.write(_jsp_string4, 0, _jsp_string4.length);
+      _caucho_expr_2.print(out, _jsp_env, false);
+      out.write(_jsp_string5, 0, _jsp_string5.length);
+      _caucho_expr_3.print(out, _jsp_env, false);
+      out.write(_jsp_string6, 0, _jsp_string6.length);
+    }
+    pageContext.pageSetOrRemove("l", null);
+    out.write(_jsp_string7, 0, _jsp_string7.length);
+    _jsp_loop_1 = _jsp_state.get_jsp_loop_1(pageContext, _jsp_parent_tag);
+    java.lang.Object _jsp_items_3 = _caucho_expr_0.evalObject(_jsp_env);
+    java.util.Iterator _jsp_iter_3 = com.caucho.jstl.rt.CoreForEachTag.getIterator(_jsp_items_3);
+    _jsp_loop_1.init(0, Integer.MAX_VALUE, 1, false, false, false);
+    while (_jsp_iter_3.hasNext()) {
+      Object _jsp_i_3 = _jsp_iter_3.next();
+      _jsp_loop_1.setCurrent(_jsp_i_3, _jsp_iter_3.hasNext());
+      pageContext.setAttribute("l", _jsp_i_3);
+      out.write(_jsp_string8, 0, _jsp_string8.length);
+      _caucho_expr_1.print(out, _jsp_env, false);
+      out.write(_jsp_string9, 0, _jsp_string9.length);
+      _caucho_expr_4.print(out, _jsp_env, false);
+      out.write(_jsp_string10, 0, _jsp_string10.length);
+    }
+    pageContext.pageSetOrRemove("l", null);
+    out.write(_jsp_string11, 0, _jsp_string11.length);
   }
 
   private com.caucho.make.DependencyContainer _caucho_depends
@@ -109,12 +151,31 @@ public class _index__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("index.jsp"), -8187937660735227359L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("index.jsp"), -5729670842612330183L, false);
     _caucho_depends.add(depend);
     loader.addDependency(depend);
   }
 
+  static {
+    try {
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new RuntimeException(e);
+    }
+  }
+
   final static class TagState {
+    private com.caucho.jsp.IteratorLoopSupportTag _jsp_loop_1;
+
+    final com.caucho.jsp.IteratorLoopSupportTag get_jsp_loop_1(PageContext pageContext, javax.servlet.jsp.tagext.JspTag _jsp_parent_tag) throws Throwable
+    {
+      if (_jsp_loop_1 == null) {
+        _jsp_loop_1 = new com.caucho.jsp.IteratorLoopSupportTag();
+        _jsp_loop_1.setParent((javax.servlet.jsp.tagext.Tag) null);
+      }
+
+      return _jsp_loop_1;
+    }
 
     void release()
     {
@@ -138,13 +199,45 @@ public class _index__jsp extends com.caucho.jsp.JavaPage
       com.caucho.jsp.TaglibManager manager = webApp.getJspApplicationContext().getTaglibManager();
       manager.addTaglibFunctions(_jsp_functionMap, "c", "http://java.sun.com/jsp/jstl/core");
       com.caucho.jsp.PageContextImpl pageContext = new com.caucho.jsp.InitPageContextImpl(webApp, this);
+      _caucho_expr_0 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${bannerList}");
+      _caucho_expr_1 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${l.t_id}");
+      _caucho_expr_2 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${l.t_linkurl}");
+      _caucho_expr_3 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${l.t_title}");
+      _caucho_expr_4 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${l.t_imgpath}");
     } catch (Exception e) {
       throw com.caucho.config.ConfigException.create(e);
     }
   }
+  private static com.caucho.el.Expr _caucho_expr_0;
+  private static com.caucho.el.Expr _caucho_expr_1;
+  private static com.caucho.el.Expr _caucho_expr_2;
+  private static com.caucho.el.Expr _caucho_expr_3;
+  private static com.caucho.el.Expr _caucho_expr_4;
 
+  private final static char []_jsp_string8;
+  private final static char []_jsp_string1;
+  private final static char []_jsp_string7;
+  private final static char []_jsp_string5;
+  private final static char []_jsp_string9;
+  private final static char []_jsp_string2;
+  private final static char []_jsp_string10;
+  private final static char []_jsp_string3;
+  private final static char []_jsp_string11;
   private final static char []_jsp_string0;
+  private final static char []_jsp_string4;
+  private final static char []_jsp_string6;
   static {
-    _jsp_string0 = "\r\n\r\n\r\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/html\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <title>http://www.iqiyi.com/</title>\r\n  <style ></style>\r\n  <link rel=\"stylesheet\" href=\"\u7231\u5947\u827a.css\"/>\r\n  <script src=\"jquery-1.12.2.js\"></script>\r\n</head>\r\n<body>\r\n<div class=\"box1\" id=\"box1\">\r\n  <a href=\"http://www.iqiyi.com\" id=\"yi\"><img src=\"../img/iqiyi-logo105x50.png\"/>\r\n  </a>\r\n  <input type=\"text\" id=\"txt\" class=\"txt\" value=\"\u4eba\u6c11\u7684\u540d\u4e49\"/><a href=\"#\" class=\"but\" id=\"but\"><img src=\"../img/2017-05-23_195120.png\"/></a>\r\n  <ul>\r\n    <li><a href=\"#\">\u767b\u9646</a></li>\r\n    <li><a href=\"#\">\u6ce8\u518c</a></li>\r\n    <li><a href=\"#\">\u5f00\u901aVIP</a></li>\r\n    <li><a href=\"#\"id=\"zhao1\"><img id=\"zhao2\" src=\"../img/2017-05-24_081613.png\"/>\u4e0a\u4f20<span></span></a></li>\r\n    <li id=\"xia\"><a href=\"#\" >\u4e0b\u8f7d\u5ba2\u6237\u7aef</a></li>\r\n    <li><a href=\"#\">\u6d88\u606f<span></span></a></li>\r\n    <li><a href=\"#\">\u64ad\u653e\u8bb0\u5f55<span></span></a></li>\r\n  </ul>\r\n  <img id=\"zhao\" src=\"../img/2017-05-24_112957.png\" alt=\"\"/>\r\n  <div id=\"box6\">\r\n    <br/><span>\u5b89\u88c5\u7231\u5947\u827aPC\u5ba2\u6237\u7aef</span><br/>\r\n    <span>\u514d\u5e7f\u544a,\u9001VIP!</span>\r\n    <s></s>\r\n  </div>\r\n</div>\r\n<div class=\"box3\" id=\"box3\">\r\n  <ul>\r\n    <span>\u70ed\u95e8\u641c\u7d22</span>\r\n    <li><s style=\"background-color: #57A900\">1</s><a href=\"#\">\u6b22\u4e50\u98822</a></li>\r\n    <li><s style=\"background-color: #7BBB38\">2</s><a href=\"#\">\u62e9\u5929\u8bb0</a></li>\r\n    <li><s style=\"background-color: #94D054\">3</s><a href=\"#\">\u5954\u8dd1\u5427</a></li>\r\n    <li><s>4</s><a href=\"#\">\u718a\u51fa\u6ca1</a></li>\r\n    <li><s>5</s><a href=\"#\">\u767d\u9e7f\u539f</a></li>\r\n    <li><s>5</s><a href=\"#\">\u5367\u5e95\u5f52\u6765</a></li>\r\n    <li><s>7</s><a href=\"#\">\u9f99\u73e0\u4f20\u5947</a></li>\r\n    <li><s>7</s><a href=\"#\">\u4eba\u6c11\u7684\u540d\u4e49</a></li>\r\n    <li><s>9</s><a href=\"#\">\u601d\u7f8e\u4eba</a></li>\r\n    <li><s>10</s><a href=\"#\">\u6d77\u8d3c\u738b</a></li>\r\n  </ul>\r\n</div>\r\n<div class=\"box2\">\r\n  <img id=\"imgs\" src=\"../img/e5dbc68268b449fcaf36c086bdd451b1.jpg\"/>\r\n  <ul>\r\n    <li id=\"l1\"><a href=\"javascript:void(0)\"> &nbsp;\u6b22\u4e50\u98822:\u4e94\u7f8e\u7eed\u5199\u6b22\u4e50\u7bc7\u7ae0</a></li>\r\n    <li id=\"l2\"><a href=\"javascript:void(0)\"> &nbsp;\u5947\u8469\u8bf4:\u96f7\u519b\u9b54\u6027\u9b3c\u755c\u6380\u9ad8\u6f6e</a></li>\r\n    <li id=\"l3\"><a href=\"javascript:void(0)\"> &nbsp;\u601d\u7f8e\u4eba:\u9a6c\u53ef\u5f20\u99a8\u4e88\u6218\u56fd\u98ce\u4e91</a></li>\r\n    <li id=\"l4\"><a href=\"javascript:void(0)\"> &nbsp;\u6765\u5427\u51a0\u519b:\u5f20\u56fd\u4f1f\u5c34\u821e\u8d3e\u4e43\u4eae</a></li>\r\n    <li id=\"l5\"><a href=\"javascript:void(0)\"> &nbsp;\u5e9f\u67f4\u5144\u5f1f5:\u89e3\u538b\u795e\u5267\u4e13\u5236\u4e0d\u723d</a></li>\r\n    <li id=\"l6\"><a href=\"javascript:void(0)\"> &nbsp;\u5403\u5149\u9884\u544a:\u5434\u5b97\u5baa\u8df5\u8e0f\u66fe\u5fd7\u4f1f</a></li>\r\n    <li id=\"l7\"><a href=\"javascript:void(0)\"> &nbsp;\u75af\u72c2\u7684\u8c46\u5b50:\u57ce\u5e02\u7248\u4e61\u6751\u7231\u60c5</a></li>\r\n    <li id=\"l8\"><a href=\"javascript:void(0)\"> &nbsp;\u5367\u5e95\u5f52\u6765:\u5f20\u5609\u8bd1\u5e26\u961f\u667a\u6597\u6bd2\u67ad</a></li>\r\n    <li id=\"l9\"><a href=\"javascript:void(0)\">&nbsp;\u63a2\u5bfbAI:AIphaGo\u518d\u6218\u4eba\u7c7b</a></li>\r\n    <li id=\"l10\"><a href=\"javascript:void(0)\">&nbsp;\u5954\u8dd1\u5427:\u9e7f\u6657\u8fa3\u624b\u6467\u82b1\u6495\u70ed\u5df4</a></li>\r\n  </ul>\r\n</div>\r\n<div class=\"box5\">\r\n  <div class=\"box4\">\r\n    <ul>\r\n      <li><a href=\"#\">\u5a31\u4e50</a></li>\r\n      <li><a href=\"#\">\u4f53\u80b2</a></li>\r\n      <li><a href=\"#\">\u8d44\u8baf</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u7535\u5f71</a></li>\r\n      <li><a href=\"#\">\u7247\u82b1</a></li>\r\n      <li><a href=\"#\">\u7f51\u7edc\u7535\u5f71</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u7535\u89c6\u5267</a></li>\r\n      <li><a href=\"#\">\u7efc\u827a</a></li>\r\n      <li><a href=\"#\">\u8131\u53e3\u79c0</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u52a8\u6f2b</a></li>\r\n      <li><a href=\"#\">\u513f\u7ae5</a></li>\r\n      <li><a href=\"#\">\u6559\u80b2</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u751f\u6d3b</a></li>\r\n      <li><a href=\"#\">\u6bcd\u5a74</a></li>\r\n      <li><a href=\"#\">\u5065\u5eb7</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u97f3\u4e50</a></li>\r\n      <li><a href=\"#\">\u65f6\u5c1a</a></li>\r\n      <li><a href=\"#\">\u65c5\u6e38</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u641e\u7b11</a></li>\r\n      <li><a href=\"#\">\u539f\u521b</a></li>\r\n      <li><a href=\"#\">\u62cd\u5ba2</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u8d22\u7ecf</a></li>\r\n      <li><a href=\"#\">\u79d1\u6280</a></li>\r\n      <li><a href=\"#\">\u6c7d\u8f66</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u519b\u4e8b</a></li>\r\n      <li><a href=\"#\">\u516c\u76ca</a></li>\r\n      <li><a href=\"#\">\u7eaa\u5f55\u7247</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u98ce\u4e91\u699c</a></li>\r\n      <li><a href=\"#\">\u5168\u7f51\u5f71\u89c6</a></li>\r\n      <li><a href=\"#\">\u5168\u7f51\u641c\u7d22</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u5947\u79c0\u76f4\u64ad</a></li>\r\n      <li><a href=\"#\">\u76f4\u64ad\u4e2d\u5fc3</a></li>\r\n      <li><a href=\"#\">\u5e94\u7528\u5546\u5e97</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u5546\u57ce</a></li>\r\n      <li><a href=\"#\">\u6e38\u620f\u89c6\u9891</a></li>\r\n      <li><a href=\"#\">\u6e38\u620f\u4e2d\u5fc3</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u5927\u5934</a></li>\r\n      <li><a href=\"#\">\u7231\u5947\u827a\u53f7</a></li>\r\n      <li><a href=\"#\">VR</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u6587\u5b66</a></li>\r\n      <li><a href=\"#\">\u5e7f\u544a</a></li>\r\n      <li><a href=\"#\">\u4e2a\u4eba\u4e2d\u5fc3</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\"><img src=\"../img/2017-05-24_150907.png\"/></a></li>\r\n      <li><a href=\"#\"></a></li>\r\n      <li><a href=\"#\">VIP\u4f1a\u5458</a></li>\r\n    </ul>\r\n\r\n  </div>\r\n</div>\r\n</body>\r\n<script>\r\n  $(function(){\r\n    $(\"#txt\").focus(function(){\r\n      $(\"#txt\").attr(\"value\",\"\")\r\n    })\r\n  })\r\n  $(function(){\r\n    $(\"#txt\").focus(function(){\r\n      $(\"#box3\").css(\"display\", \"block\")\r\n    })\r\n    $(\"#txt\").focusout(function(){\r\n      $(\"#box3\").css(\"display\", \"none\")\r\n    })\r\n  })\r\n  $(function(){\r\n    $(\"#xia\").mouseenter(function(){\r\n      $(\"#box6\").css(\"display\", \"block\")\r\n    })\r\n    $(\"#xia\").mouseleave(function(){\r\n      $(\"#box6\").css(\"display\", \"none\")\r\n    })\r\n  })\r\n  $(function(){\r\n    $(\"#l1\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/e5dbc68268b449fcaf36c086bdd451b1.jpg\")\r\n    })\r\n    $(\"#l2\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/511072517c26452da069ae5946c55578.jpg\")\r\n    })\r\n    $(\"#l3\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/d95e0d6af17943caac8eef4d299eea29.jpg\")\r\n    })\r\n    $(\"#l4\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/f421c3b35f824c05b6946b3edaba3497.jpg\")\r\n    })\r\n    $(\"#l5\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/17707927b7204d47a29ff363ce6d3461.jpg\")\r\n    })\r\n    $(\"#l6\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/9946372ea5504631a9179f4141ec9afb.jpg\")\r\n    })\r\n    $(\"#l7\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/6e736d57f6fa4aa890731dc4ef3a7cfd.jpg\")\r\n    })\r\n    $(\"#l8\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/5c50ecbf5d9641c4825aba9a3cd45c83.jpg\")\r\n    })\r\n    $(\"#l9\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/a66b1457a98c4f3aba0f8d032b9c8b2f.jpg\")\r\n    })\r\n    $(\"#l10\").mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"../img/c893336311a84fa18762e751a1338887.jpeg\")\r\n    })\r\n  })\r\n</script>\r\n</html>\r\n".toCharArray();
+    _jsp_string8 = "\r\n    var id=".toCharArray();
+    _jsp_string1 = "/aqy.css\"/>\r\n  <script src=\"".toCharArray();
+    _jsp_string7 = "\r\n  </ul>\r\n</div>\r\n<div class=\"box5\">\r\n  <div class=\"box4\">\r\n    <ul>\r\n      <li><a href=\"#\">\u5a31\u4e50</a></li>\r\n      <li><a href=\"#\">\u4f53\u80b2</a></li>\r\n      <li><a href=\"#\">\u8d44\u8baf</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u7535\u5f71</a></li>\r\n      <li><a href=\"#\">\u7247\u82b1</a></li>\r\n      <li><a href=\"#\">\u7f51\u7edc\u7535\u5f71</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u7535\u89c6\u5267</a></li>\r\n      <li><a href=\"#\">\u7efc\u827a</a></li>\r\n      <li><a href=\"#\">\u8131\u53e3\u79c0</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u52a8\u6f2b</a></li>\r\n      <li><a href=\"#\">\u513f\u7ae5</a></li>\r\n      <li><a href=\"#\">\u6559\u80b2</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u751f\u6d3b</a></li>\r\n      <li><a href=\"#\">\u6bcd\u5a74</a></li>\r\n      <li><a href=\"#\">\u5065\u5eb7</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u97f3\u4e50</a></li>\r\n      <li><a href=\"#\">\u65f6\u5c1a</a></li>\r\n      <li><a href=\"#\">\u65c5\u6e38</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u641e\u7b11</a></li>\r\n      <li><a href=\"#\">\u539f\u521b</a></li>\r\n      <li><a href=\"#\">\u62cd\u5ba2</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u8d22\u7ecf</a></li>\r\n      <li><a href=\"#\">\u79d1\u6280</a></li>\r\n      <li><a href=\"#\">\u6c7d\u8f66</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u519b\u4e8b</a></li>\r\n      <li><a href=\"#\">\u516c\u76ca</a></li>\r\n      <li><a href=\"#\">\u7eaa\u5f55\u7247</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u98ce\u4e91\u699c</a></li>\r\n      <li><a href=\"#\">\u5168\u7f51\u5f71\u89c6</a></li>\r\n      <li><a href=\"#\">\u5168\u7f51\u641c\u7d22</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u5947\u79c0\u76f4\u64ad</a></li>\r\n      <li><a href=\"#\">\u76f4\u64ad\u4e2d\u5fc3</a></li>\r\n      <li><a href=\"#\">\u5e94\u7528\u5546\u5e97</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u5546\u57ce</a></li>\r\n      <li><a href=\"#\">\u6e38\u620f\u89c6\u9891</a></li>\r\n      <li><a href=\"#\">\u6e38\u620f\u4e2d\u5fc3</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u5927\u5934</a></li>\r\n      <li><a href=\"#\">\u7231\u5947\u827a\u53f7</a></li>\r\n      <li><a href=\"#\">VR</a></li>\r\n    </ul>\r\n    <ul>\r\n      <li><a href=\"#\">\u6587\u5b66</a></li>\r\n      <li><a href=\"#\">\u5e7f\u544a</a></li>\r\n      <li><a href=\"#\">\u4e2a\u4eba\u4e2d\u5fc3</a></li>\r\n    </ul>\r\n    <ul class=\"ul-x\"></ul>\r\n    <ul>\r\n      <li><a href=\"#\"><img src=\"../img/2017-05-24_150907.png\"/></a></li>\r\n      <li><a href=\"#\"></a></li>\r\n      <li><a href=\"#\">VIP\u4f1a\u5458</a></li>\r\n    </ul>\r\n\r\n  </div>\r\n</div>\r\n</body>\r\n<script>\r\n  $(function(){\r\n    $(\"#txt\").focus(function(){\r\n      $(\"#txt\").attr(\"value\",\"\")\r\n    })\r\n  })\r\n  $(function(){\r\n    $(\"#txt\").focus(function(){\r\n      $(\"#box3\").css(\"display\", \"block\")\r\n    })\r\n    $(\"#txt\").focusout(function(){\r\n      $(\"#box3\").css(\"display\", \"none\")\r\n    })\r\n  })\r\n  $(function(){\r\n    $(\"#xia\").mouseenter(function(){\r\n      $(\"#box6\").css(\"display\", \"block\")\r\n    })\r\n    $(\"#xia\").mouseleave(function(){\r\n      $(\"#box6\").css(\"display\", \"none\")\r\n    })\r\n  })\r\n  $(function(){\r\n    ".toCharArray();
+    _jsp_string5 = "\"> &nbsp;".toCharArray();
+    _jsp_string9 = ";\r\n    $(\"#\"+id).mouseenter(function(){\r\n      $(\"#imgs\").attr(\"src\",\"".toCharArray();
+    _jsp_string2 = "/jquery-1.12.2.js\"></script>\r\n</head>\r\n<body>\r\n<div class=\"box1\" id=\"box1\">\r\n  <a href=\"http://www.iqiyi.com\" id=\"yi\"><img src=\"../img/iqiyi-logo105x50.png\"/>\r\n  </a>\r\n  <input type=\"text\" id=\"txt\" class=\"txt\" value=\"\u4eba\u6c11\u7684\u540d\u4e49\"/><a href=\"#\" class=\"but\" id=\"but\"><img src=\"../img/2017-05-23_195120.png\"/></a>\r\n  <ul>\r\n    <li><a href=\"#\">\u767b\u9646</a></li>\r\n    <li><a href=\"#\">\u6ce8\u518c</a></li>\r\n    <li><a href=\"#\">\u5f00\u901aVIP</a></li>\r\n    <li><a href=\"#\"id=\"zhao1\"><img id=\"zhao2\" src=\"../img/2017-05-24_081613.png\"/>\u4e0a\u4f20<span></span></a></li>\r\n    <li id=\"xia\"><a href=\"#\" >\u4e0b\u8f7d\u5ba2\u6237\u7aef</a></li>\r\n    <li><a href=\"#\">\u6d88\u606f<span></span></a></li>\r\n    <li><a href=\"#\">\u64ad\u653e\u8bb0\u5f55<span></span></a></li>\r\n  </ul>\r\n  <img id=\"zhao\" src=\"../img/2017-05-24_112957.png\" alt=\"\"/>\r\n  <div id=\"box6\">\r\n    <br/><span>\u5b89\u88c5\u7231\u5947\u827aPC\u5ba2\u6237\u7aef</span><br/>\r\n    <span>\u514d\u5e7f\u544a,\u9001VIP!</span>\r\n    <s></s>\r\n  </div>\r\n</div>\r\n<div class=\"box3\" id=\"box3\">\r\n  <ul>\r\n    <span>\u70ed\u95e8\u641c\u7d22</span>\r\n    <li><s style=\"background-color: #57A900\">1</s><a href=\"#\">\u6b22\u4e50\u98822</a></li>\r\n    <li><s style=\"background-color: #7BBB38\">2</s><a href=\"#\">\u62e9\u5929\u8bb0</a></li>\r\n    <li><s style=\"background-color: #94D054\">3</s><a href=\"#\">\u5954\u8dd1\u5427</a></li>\r\n    <li><s>4</s><a href=\"#\">\u718a\u51fa\u6ca1</a></li>\r\n    <li><s>5</s><a href=\"#\">\u767d\u9e7f\u539f</a></li>\r\n    <li><s>5</s><a href=\"#\">\u5367\u5e95\u5f52\u6765</a></li>\r\n    <li><s>7</s><a href=\"#\">\u9f99\u73e0\u4f20\u5947</a></li>\r\n    <li><s>7</s><a href=\"#\">\u4eba\u6c11\u7684\u540d\u4e49</a></li>\r\n    <li><s>9</s><a href=\"#\">\u601d\u7f8e\u4eba</a></li>\r\n    <li><s>10</s><a href=\"#\">\u6d77\u8d3c\u738b</a></li>\r\n  </ul>\r\n</div>\r\n<div class=\"box2\">\r\n  <img id=\"imgs\" src=\"../img/e5dbc68268b449fcaf36c086bdd451b1.jpg\"/>\r\n  <ul>\r\n    ".toCharArray();
+    _jsp_string10 = "\")\r\n    })\r\n    ".toCharArray();
+    _jsp_string3 = "\r\n      <li id=\"".toCharArray();
+    _jsp_string11 = "\r\n  })\r\n</script>\r\n</html>\r\n".toCharArray();
+    _jsp_string0 = "\r\n\r\n\r\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/html\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <title>http://www.iqiyi.com/</title>\r\n  <style ></style>\r\n  <link rel=\"stylesheet\" href=\"".toCharArray();
+    _jsp_string4 = "\"><a href=\"".toCharArray();
+    _jsp_string6 = "</a></li>\r\n    ".toCharArray();
   }
 }

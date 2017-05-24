@@ -6,14 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title>http://www.iqiyi.com/</title>
   <style ></style>
-  <link rel="stylesheet" href="爱奇艺.css"/>
-  <script src="jquery-1.12.2.js"></script>
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/aqy.css"/>
+  <script src="<%=request.getContextPath()%>/jquery-1.12.2.js"></script>
 </head>
 <body>
 <div class="box1" id="box1">
@@ -55,7 +55,7 @@
   <img id="imgs" src="../img/e5dbc68268b449fcaf36c086bdd451b1.jpg"/>
   <ul>
     <c:forEach items="${bannerList}" var="l">
-       <li id="${t_id}"><a href="javascript:${t_linkurl}"> &nbsp;${l.t_title}</a></li>
+      <li id="${l.t_id}"><a href="${l.t_linkurl}"> &nbsp;${l.t_title}</a></li>
     </c:forEach>
   </ul>
 </div>
@@ -169,13 +169,13 @@
       $("#box6").css("display", "none")
     })
   })
-$(function(){
-  <c:forEach items="${bannerList}" var="l">
-     var id=${l.t_id};
+  $(function(){
+    <c:forEach items="${bannerList}" var="l">
+    var id=${l.t_id};
     $("#"+id).mouseenter(function(){
-      $("#imgs").attr("src",${l.t_imgpath})
+      $("#imgs").attr("src","${l.t_imgpath}")
     })
- </c:forEach>
+    </c:forEach>
   })
 </script>
 </html>
