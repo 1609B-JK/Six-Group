@@ -42,6 +42,12 @@ subprojects{
         compile 'taglibs:standard:1.1.2'
         compile 'javax.servlet:servlet-api:3.0-alpha-1'
         compile 'javax:javaee-api:7.0'
+
+
+
+        //cxf框架
+        compile group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxws', version: '3.1.10'
+        compile group: 'org.apache.cxf', name: 'cxf-rt-transports-http', version: '3.1.10'
     }
 }
-//测试234
+//测试234，。
