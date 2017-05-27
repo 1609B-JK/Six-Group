@@ -3,6 +3,6 @@
 <mapper namespace="com.jk.mapper.WordMapper" >
 
     <select id="selectWordList" resultType="com.jk.entity.Word" parameterType="string">
-        SELECT * FROM t_word w WHERE w.wordName LIKE '${value}%'
+        SELECT * FROM t_word w WHERE w.wordName LIKE '${value}%' limit 0,11
     </select>
 </mapper>

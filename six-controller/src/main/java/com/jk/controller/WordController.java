@@ -3,6 +3,7 @@ package com.jk.controller;
 import com.jk.entity.Word;
 import com.jk.service.WordService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,6 +25,8 @@ public class WordController {
     @RequestMapping("/spell_check")
     @ResponseBody
     public Map<String,Object> spell_check(String keyWord){
+        System.out.println(keyWord);
+        System.out.println("--------------------------------------------------------------------------");
         List<Word> data = wordService.selectWordList(keyWord);
         Integer code = 200;
         String msg = "成功";

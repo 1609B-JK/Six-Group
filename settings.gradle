@@ -3,4 +3,5 @@ include 'six-entity'
 include 'six-mapper'
 include 'six-service'
 include 'six-controller'
+include 'six-common'
 

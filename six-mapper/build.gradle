@@ -4,3 +4,6 @@ version '1.0-SNAPSHOT'
 dependencies {
     compile project (":six-entity")
 }
+dependencies {
+    compile project (":six-common")
+}

@@ -156,20 +156,26 @@
   $(function(){
     $("#txt").keyup(function(){
       var text = $("#txt").val();
-      $.ajax({
-        url:"<%=request.getContextPath()%>/word/spell_check.do",
-        type:"post",
-        data:{keyWord:text},
-        success:function(m){
-          var wl = m.data;
-          $("#ul1").empty();
-          var t = "";
-          for(var i in wl){
-            t += "<li><a href='#'>"+wl[i].wordName+"</a></li>"
-          }
-          $("#ul1").append(t);
-        },dataType:"json"
-      })
+      var j = text.length;
+      if(j>0) {
+        $.ajax({
+          url: "<%=request.getContextPath()%>/word/spell_check.do",
+          type: "post",
+          data: {keyWord: text},
+          success: function (m) {
+            var wl = m.data;
+            var size = wl.length;
+            if(size>0) {
+              $("#ul1").empty();
+              var t = "";
+              for (var i in wl) {
+                t += "<li><a href='#'>" + wl[i].wordName + "</a></li>"
+              }
+              $("#ul1").append(t);
+            }
+          }, dataType: "json"
+        })
+      }
     })
   })
   $(function(){
