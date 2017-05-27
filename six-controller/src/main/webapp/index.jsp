@@ -37,7 +37,7 @@
   </div>
 </div>
 <div class="box3" id="box3">
-  <ul>
+  <ul id="ul1">
     <span>热门搜索</span>
     <li><s style="background-color: #57A900">1</s><a href="#">欢乐颂2</a></li>
     <li><s style="background-color: #7BBB38">2</s><a href="#">择天记</a></li>
@@ -151,6 +151,25 @@
   $(function(){
     $("#txt").focus(function(){
       $("#txt").attr("value","")
+    })
+  })
+  $(function(){
+    $("#txt").keyup(function(){
+      var text = $("#txt").val();
+      $.ajax({
+        url:"<%=request.getContextPath()%>/word/spell_check.do",
+        type:"post",
+        data:{keyWord:text},
+        success:function(m){
+          var wl = m.data;
+          $("#ul1").empty();
+          var t = "";
+          for(var i in wl){
+            t += "<li><a href='#'>"+wl[i].wordName+"</a></li>"
+          }
+          $("#ul1").append(t);
+        },dataType:"json"
+      })
     })
   })
   $(function(){
